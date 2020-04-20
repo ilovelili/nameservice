@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-nsd start
+set -e
 
 nscli query account $(nscli keys show jack -a) | jq ".value.coins[0]"
 nscli query account $(nscli keys show alice -a) | jq ".value.coins[0]"

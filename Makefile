@@ -14,9 +14,9 @@ BUILD_FLAGS := -ldflags '$(ldflags)'
 include Makefile.ledger
 all: install
 
-install: go.sum
-		go install -mod=readonly $(BUILD_FLAGS) ./cmd/nsd
-		go install -mod=readonly $(BUILD_FLAGS) ./cmd/nscli
+install: go.sum		
+		CGO_ENABLED=0 GOOS=linux go install -a -installsuffix cgo -ldflags="-w -s" -mod=readonly $(BUILD_FLAGS) ./cmd/nsd
+		CGO_ENABLED=0 GOOS=linux go install -a -installsuffix cgo -ldflags="-w -s" -mod=readonly $(BUILD_FLAGS) ./cmd/nscli
 
 go.sum: go.mod
 		@echo "--> Ensure dependencies have not been modified"

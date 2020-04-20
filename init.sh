@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
+set -e
 
 nsd unsafe-reset-all
 rm -rf ~/.nsd
@@ -11,6 +13,8 @@ nscli config indent true
 nscli config trust-node true
 nscli config chain-id namechain
 nscli config keyring-backend test
+
+# nscli config node tcp://localhost:26657
 
 nscli keys add jack
 nscli keys add alice
@@ -25,3 +29,5 @@ nsd collect-gentxs
 
 echo "Validating genesis file..."
 nsd validate-genesis
+
+nsd start
