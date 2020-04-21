@@ -11,3 +11,6 @@ services:
       - "/bin/sh"
       - "-c"
       - "./init.sh"
+    # volumes:
+    #   - ${HOME}/.nscli/:/root/.nscli/:rw
+    #   - ${HOME}/.nsd/:/root/.nsd/:rw

@@ -3,6 +3,7 @@
 set -e
 
 nsd unsafe-reset-all
+
 rm -rf ~/.nsd
 rm -rf ~/.nscli
 
@@ -14,7 +15,7 @@ nscli config trust-node true
 nscli config chain-id namechain
 nscli config keyring-backend test
 
-# nscli config node tcp://localhost:26657
+# nscli config node tcp://0.0.0.0:26657
 
 nscli keys add jack
 nscli keys add alice
@@ -30,4 +31,5 @@ nsd collect-gentxs
 echo "Validating genesis file..."
 nsd validate-genesis
 
-nsd start
+# 0.0.0.0:26657 instead of default 127.0.0.1:26657
+nsd start --rpc.laddr=tcp://0.0.0.0:26657
